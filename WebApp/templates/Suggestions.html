@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'SuggestionsStyle.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+    <title>Suggestions</title>
+</head>
+
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="logo"><a href="{% url 'ViewProfile' %}">ScaleUP<i class="far fa-arrow-alt-circle-up"></i></a></div>
+            <ul class="menu">
+                <li class="first current_page_item">
+                    <a href="{% url 'ViewProfile' %}">Profile</a>
+                  </li>
+                  <li><a href="{% url 'ViewStartupGroup' %}">View Mentors</a></li>
+                  <li><a href="{% url 'PostQueries' %}">Post Queries</a></li>
+                  <li><a href="{% url 'ViewSuggestions' %}">View Suggestions</a></li>
+                <div class="cancel-btn">
+                    <i class="fas fa-times"></i>
+                </div>
+            </ul>
+            <div class="media-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </nav>
+    {% csrf_token %}
+    <h2 class="message">Give your Suggestion</h2>
+
+
+
+
+    <div>
+        <div class="card">
+        <form name="f1" method="post" action={% url 'SuggestionAction' %} onsubmit="return validate(this);"><br/>
+            {% csrf_token %}
+            <table id="query">
+                {{data|safe}}
+                <tr>
+                    <td>
+                        <font size="" color="black">Your Suggestion : </b>
+                    </td>
+                    <td><textarea rows="10" cols="30" name="t2" placeholder="Post your Suggestion here..."></textarea></td>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Submit" id="submit_btn">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        </div>
+    </div>
+
+    <!-- <h4><b>Suggestion Screen</b></h4>
+
+
+    <table align="right" width="40">
+        {{data|safe}}
+        <tr>
+            <td><b>Suggestion</b></td>
+            <td><input type="text" name="t2" style="font-family: Comic Sans MS" size="70" /></td>
+        </tr>
+
+
+
+
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Submit">
+            </td>
+        </tr>
+
+    </table>
+    </div>
+
+    </div> -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,327 @@
+
+con = pymysql.connect(host='127.0.0.1',port = 3306,user = 'root', password = 'root', database = 'mentor',charset='utf8')
+        with con:
+            cur = con.cursor()
+            cur.execute("select * from queries where domain='"+group+"'")
+            rows = cur.fetchall()
+            for row in rows:
+                            qid = row[0]
+                            startup = row[1]
+                            domain = row[2]
+                            query = row[3]
+                            date = row[4]
+
+
+Suggestions.html
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/SuggestionsStyle.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+    <title>Suggestions</title>
+    <script>
+        function myFunction() {
+            confirm("Are you sure you want to Logout?");
+        }
+    </script>
+</head>
+
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="logo"><a href="StartupScreen.html">ScaleUP<i class="far fa-arrow-alt-circle-up"></i></a></div>
+            <ul class="menu">
+                <li class="first current_page_item"><a href="MentorScreen.html">Profile</a></li>
+                <li><a href="ViewQueries.html">View Queries</a></li>
+                <!-- <li><a href="{% url 'ViewMentorRatings' %}">View Own Ratings</a></li> -->
+                <li><a href="Index.html" onclick="myFunction()">Logout</a></li>
+
+                <div class="cancel-btn">
+                    <i class="fas fa-times"></i>
+                </div>
+            </ul>
+            <div class="media-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <h2 class="message">Give your Suggestion</h2>
+
+
+
+
+    <div>
+        <div class="card">
+
+        <table id="query">
+            <tr>
+                <td>
+                    <font size="" color="black">Your Suggestion : </b>
+                </td>
+                <!-- <td><input type="text" name="t1" id="text_box" /></td> -->
+                <td><textarea rows="10" cols="30" name="comment" form="usrform" placeholder="Post your Suggestion here..."></textarea></td>
+
+
+
+
+
+                </select>
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit" id="submit_btn">
+                </td>
+            </tr>
+
+
+
+        </table>
+    </div>
+    </div>
+
+    </div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <!-- <div>
+        <form>
+            <textarea rows="5" cols="50" name="t1">Enter your query here</textarea>
+            <input type="textarea" name="t1" style="font-family: Comic Sans MS" size=60/>
+            <input type="submit" value="submit" />
+        </form>
+    </div> -->
+
+
+
+</body>
+
+</html>
+
+
+
+SuggestionView.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/SuggestionViewStyle.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+    <title>Suggestion View</title>
+    <script>
+        function myFunction() {
+            confirm("Are you sure you want to Logout?");
+        }
+    </script>
+</head>
+
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="logo"><a href="StartupScreen.html">ScaleUP<i class="far fa-arrow-alt-circle-up"></i></a></div>
+            <ul class="menu">
+                <li class="first current_page_item"><a href="StartupScreen.html">Profile</a></li>
+                <li><a href="ViewStartupGroup.html">View Mentors</a></li>
+                <li><a href="PostQueries.html">Post Queries</a></li>
+                <li><a href="SuggestionView.html">View Suggestions</a></li>
+                <!-- <li><a href="{% url 'ViewRatings' %}">View Mentor Ratings</a></li> -->
+                <li><a onclick="myFunction()" href="Index.html">Logout</a></li>
+                <div class="cancel-btn">
+                    <i class="fas fa-times"></i>
+                </div>
+            </ul>
+            <div class="media-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </nav>
+    <h2 class="message">Suggestions</h2>
+
+    <!-- <br />{% csrf_token %}<br /> -->
+    <label for="select_mentor">Select Mentor : </label>
+    <select name="select_mentor" id="select_mentor">
+        <option value="Veera Ray">Veera Ray</option>
+        <option value="Joy Fouler">Joy Fouler</option>
+    </select>
+
+    <br />
+    <table  border="1" align="center" width="100%">
+
+        <tr>
+            <th>
+                Query ID
+            </th>
+            <th>
+                Startup Name
+            </th>
+            <th>
+                Domain
+            </th>
+            <th>
+                Query
+            </th>
+            <!-- <th>
+                <font size="" color="black">Query Date
+            </th> -->
+            <th>
+                Mentor Name
+            </th>
+            <!-- <th>
+                <font size="" color="black">Mentor Experience
+            </th> -->
+            <th>
+                Suggestions
+            </th>
+            <th>
+                Give Your Rating
+            </th>
+        </tr>
+        <tr>
+            <td>
+                001
+            </td>
+            <td>
+                Belvedere Trading
+            </td>
+            <td>
+                Finance
+            </td>
+            <td>
+                What could be my funding options to raise startup capital for my business?
+            </td>
+            <!-- <th>
+                <font size="" color="black">Query Date
+            </th> -->
+            <td>
+                Vera Ray
+            </td>
+            <!-- <th>
+                <font size="" color="black">Mentor Experience
+            </th> -->
+            <td>
+                Few of your funding options could be bootstrapping your startup business, crowdfunding, get angel investment.
+            </td>
+            <td>
+                <input type="number" placeholder="1-5" min="1" max="5">
+            </td>
+        </tr>
+
+        <!-- {{data|safe}} -->
+
+
+    </table>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+
+</body>
+
+</html>
+
+
+
+
+
+StartupRegister.html / Signup.html
+
+
+
+<div class="field">
+              <input type="text" placeholder="Company Name" name="" required />
+            </div>
+            <div class="field">
+              <input
+                type="number"
+                placeholder="Company Age (in months) "
+                name=""
+                required
+              />
+            </div>
+            <div class="field">
+              <input
+                type="number"
+                placeholder="Number of Employess"
+                name=""
+                required
+              />
+            </div>
+            <div class="field">
+              <input
+                type=""
+                placeholder="Company Age (in months) "
+                name=""
+                required
+              />
+            </div>
+            <label for="domain"></label>
+            <select name="">
+              <option value="" disabled selected>Select Company Domain</option>
+              <option value="finance" class="s">Finance</option>
+              <option value="human_resource" class="s">Human Resource</option>
+            </select>
+            <div class="field">
+              <input
+                type="text"
+                placeholder="Name - Point of Contact"
+                name=""
+                required
+              />
+            </div>
+            <div class="field">
+              <input
+                type="email"
+                placeholder="Email - Point of Contact"
+                name=""
+                required
+              />
+            </div>
+            <div class="field">
+              <input
+                type="email"
+                placeholder="Company Email"
+                name=""
+                required
+              />
+            </div>
+            <div class="field">
+              <input
+                type="text"
+                placeholder="LinkedIn Profile"
+                name=""
+                required
+              />
+            </div>
+            <div class="field">
+              <input
+                type="text"
+                placeholder="Company Website"
+                name=""
+                required
+              />
+            </div>
+            <div class="field">
+              <input type="password" placeholder="Password" name="" required />
+            </div>
+
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="Sign Up" onclick="myFunction()" /> >
+            </div>
+
